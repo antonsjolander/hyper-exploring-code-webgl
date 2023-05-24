@@ -1,3 +1,3 @@
-# hyper-exploring-code-canvas
+# hyper-exploring-code-webgl
 
-Ultra barebones templete for the course on Canvas
+Ultra barebones templete for the course on 3D Grapichs
