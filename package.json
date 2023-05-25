@@ -10,6 +10,7 @@
 	},
 	"dependencies": {
 		"babel-loader": "^9.1.2",
-		"dat.gui": "^0.7.9"
+		"dat.gui": "^0.7.9",
+		"three": "^0.152.2"
 	}
 }
