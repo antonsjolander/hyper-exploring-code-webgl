@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 	mode: "development",
@@ -50,5 +51,10 @@ module.exports = {
 			filename: "index.html", // output file
 		}),
 		new webpack.HotModuleReplacementPlugin(),
+		new CopyPlugin({
+            patterns: [
+                { from: "src/public", to: "" } //to the dist root directory
+            ],
+        }),
 	],
 };
