@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {gsap} from 'gsap';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
@@ -7,7 +8,7 @@ const texture = new THREE.TextureLoader().load("/dog.jpg")
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
 texture.repeat.set( 4, 4 );
-console.log(texture)
+
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -18,7 +19,7 @@ camera.position.set( 0, 0, 5 );
 controls.update();
 
 const geometry = new THREE.BoxGeometry(2,2,2);
-const material = new THREE.MeshStandardMaterial({ metalness: 0, roughness: 1, map: texture});
+const material = new THREE.MeshStandardMaterial({ metalness: 0.5, roughness: 1, map: texture});
 const cube = new THREE.Mesh(geometry, material);
 
 //Light
@@ -39,7 +40,7 @@ cube.position.x = 0
 
 scene.add(cube, pointLight, pointLight2, light);
 
-camera.position.z = 5;
+camera.position.z = 20;
 
 function resize() {
     camera.aspect = window.innerWidth / window.innerHeight
@@ -60,5 +61,9 @@ function animate() {
 
     renderer.render(scene, camera);
 }
+
+gsap.to(camera.position, {z: 5, ease: 'power2.out', duration:0.2, delay:1})
+gsap.to(cube.scale, {x:0.5, y:0.5, z: 0.5, ease: 'power2.out', duration:0.2, delay:1.5, repeat: -1, yoyo: true})
+gsap.to(cube.position, {x:3, y:-3, z: -0.5, ease: 'power2.out', duration:0.2, delay:1.5, repeat: -1, yoyo: true})
 
 animate();
